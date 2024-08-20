@@ -16,6 +16,7 @@ import java.util.List;
 public class TodoController {
     private TodoService todoService;
 
+    // Method level security
     @PreAuthorize("hasRole('ADMIN')")
     @PostMapping
     public ResponseEntity<TodoDto> addTodo(@RequestBody TodoDto todoDto) {
