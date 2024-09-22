@@ -21,7 +21,7 @@ public class JWTTokenProvider {
     private Long jwtExpirationDate;
 
     // Generate JWT token
-    public String generateToken(Authentication authentication){
+    public String generateToken(Authentication authentication) {
         String username = authentication.getName();
         Date currentDate = new Date();
         Date expireDate = new Date(currentDate.getTime() + jwtExpirationDate);
@@ -36,14 +36,15 @@ public class JWTTokenProvider {
         return token;
     }
 
-    private Key key(){
+    // Decode key
+    private Key key() {
         return Keys.hmacShaKeyFor(
                 Decoders.BASE64.decode(jwtSecret)
         );
     }
 
     // Get username from JWT token
-    public String getUsername(String token){
+    public String getUsername(String token) {
         Claims claims = Jwts.parserBuilder()
                 .setSigningKey(key())
                 .build()
@@ -56,11 +57,12 @@ public class JWTTokenProvider {
     }
 
     // Validate JWT token
-    public boolean validateToken(String token){
+    public boolean validateToken(String token) {
         Jwts.parserBuilder()
                 .setSigningKey(key())
                 .build()
                 .parse(token);
         return true;
     }
+
 }

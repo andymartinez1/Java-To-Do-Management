@@ -13,7 +13,7 @@ public class GlobalExceptionHandler {
 
     @ExceptionHandler(TodoAPIException.class)
     public ResponseEntity<ErrorDetails> handleTodoAPIException(TodoAPIException exception,
-                                                               WebRequest webRequest){
+                                                               WebRequest webRequest) {
         ErrorDetails errorDetails = new ErrorDetails(
                 LocalDateTime.now(),
                 exception.getMessage(),
