@@ -32,12 +32,12 @@ public class AuthServiceImpl implements AuthService {
     @Override
     public String register(RegisterDto registerDto) {
         // Check if username already exists in database
-        if(userRepository.existsByUsername(registerDto.getUsername())){
+        if (userRepository.existsByUsername(registerDto.getUsername())) {
             throw new TodoAPIException(HttpStatus.BAD_REQUEST, "Username already taken");
         }
 
         // Check if email already exists in database
-        if(userRepository.existsByEmail(registerDto.getEmail())){
+        if (userRepository.existsByEmail(registerDto.getEmail())) {
             throw new TodoAPIException(HttpStatus.BAD_REQUEST, "Email already in use");
         }
 
